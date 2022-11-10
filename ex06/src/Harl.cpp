@@ -38,9 +38,13 @@ void Harl::complain(std::string level)
 
 	i = -1;
 	while (levels[++i] != level && i < 4);
-	if (i == 4)
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-	else
-		while (i < 4)
-			(this->*tab[i++])();
+	switch (i)
+	{
+		case 4:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break;
+		default:
+			while (i < 4)
+				(this->*tab[i++])();
+	}
 }
