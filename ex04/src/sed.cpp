@@ -14,6 +14,11 @@ void replace(std::string &str, std::string const &search, std::string const &rep
 	}
 }
 
+bool is_empty(std::ifstream &stream)
+{
+	return (stream.peek() == std::ifstream::traits_type::eof());
+}
+
 void sed(std::string const &name, std::string const &s1, std::string const &s2)
 {
 	std::ifstream infile;
@@ -28,7 +33,7 @@ void sed(std::string const &name, std::string const &s1, std::string const &s2)
 	}
 	filename = name + ".replace";
 	std::ofstream outfile(filename.c_str());
-	while (infile.good())
+	while (infile.good() && !is_empty(infile))
 	{
 		std::getline(infile, content);
 		content += "\n";

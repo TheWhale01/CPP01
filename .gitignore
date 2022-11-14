@@ -6,3 +6,7 @@ violence
 sed
 harl
 harlFilter
+*.json
+.cache/
+.vscode/
+*.replace
